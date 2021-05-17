@@ -75,6 +75,8 @@ SET			FullName = 'Nguyễn Bá Lộc', Email = 'loc.nguyenba@vti.com.vn'
 WHERE		AccountID = 5;
 
 -- Question 15: update account có id = 5 sẽ thuộc group có id = 4
+-- Câu này em bị Error 1062 suốt mà không sửa không làm được
+
 SELECT		*
 FROM		GroupAccount;
 
