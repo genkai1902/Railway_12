@@ -32,12 +32,12 @@ CREATE TABLE Trainee(
 
 -- Question 2: Thêm ít nhất 10 bản ghi vào table
 INSERT INTO Trainee (FullName,				Birth_Date,			Gender,		ET_IQ,	ET_Gmath,	ET_English,		Training_Class,		Evaluation_Notes)
-VALUES				('Nguyen Hai Nam',		'1997-02-19',		'Male',		'15',	'15',		'45',			'VTI007',			'DHMHN'),
-					('Nguyen Chau Giang',	'1997-04-09',		'Female',	'13',	'14',		'40',			'VTI007',			'DHY'),
+VALUES				('Nguyen Hai Nam',		'1997-02-19',		'Male',		'15',	'15',		'45',			'VTI001',			'DHMHN'),
+					('Nguyen Chau Giang',	'1997-04-09',		'Female',	'13',	'14',		'40',			'VTI001',			'DHY'),
                     ('Le Thanh Duy',		'1999-02-03',		'Male',		'7',	'8',		'46',			'VTI002',			'DHVH'),
-                    ('Vu Quang Huy',		'1992-01-27',		'Male',		'15',	'15',		'43',			'VTI004',			'DHMHN'),
+                    ('Vu Quang Huy',		'1992-01-27',		'Male',		'15',	'15',		'43',			'VTI003',			'DHMHN'),
                     ('Nguyen Hoang Minh',	'1990-09-02',		'Male',		'15',	'15',		'47',			'VTI002',			'DHMHN'),
-                    ('Mai Duc Son',			'1997-02-10',		'Male',		'15',	'15',		'45',			'VTI006',			'DHMHN'),
+                    ('Mai Duc Son',			'1997-02-10',		'Male',		'15',	'15',		'45',			'VTI002',			'DHMHN'),
                     ('Pham Ngoc Tuong',		'1989-01-21',		'Female',	'15',	'15',		'45',			'VTI001',			'DHMHN'),
                     ('Ha Hue Chi',			'2000-06-30',		'Female',	'15',	'15',		'40',			'VTI003',			'DHMHN'),
                     ('Nguyen Hong Giang',	'1994-07-27',		'Female',	'15',	'15',		'44',			'VTI002',			'DHMHN'),
@@ -144,12 +144,30 @@ GROUP BY	Training_Class;
 -- Question 22: Đếm tổng số thực tập sinh trong lớp VTI001 và VTI003 có bao nhiêu thực tập sinh.
 SELECT		COUNT(*) AS Number_of_Trainee
 FROM		Trainee
-WHERE		Training_Class = 'VTI001' AND Training_Class = 'VTI003';
+GROUP BY 	Training_Class HAVING Training_Class = 'VTI001' OR Training_Class = 'VTI003';
 
 -- Question 23: Lấy ra số lượng các thực tập sinh theo giới tính: Male, Female, Unknown.
--- Question 24: Lấy ra lớp có lớn hơn 5 thực tập viên
--- Question 25: Lấy ra lớp có lớn hơn 5 thực tập viên
+SELECT		Gender, COUNT(*)
+FROM		Trainee
+GROUP BY	Gender;
+
+-- Question 25: Lấy ra lớp có lớn hơn 4 thực tập viên
+SELECT		Training_Class, COUNT(*) AS Number_of_Trainees
+FROM		Trainee
+GROUP BY	Training_Class HAVING COUNT(*) >= 4;
+
 -- Question 26: Lấy ra trường có ít hơn 4 thực tập viên tham gia khóa học
+SELECT		Training_Class, COUNT(*) AS Number_of_Trainees
+FROM		Trainee
+GROUP BY	Training_Class HAVING COUNT(*) < 4;
+
 -- Question 27: Bước 1: Lấy ra danh sách thông tin ID, Fullname, lớp thực tập viên có lớp 'VTI001'
 -- 			Bước 2: Lấy ra danh sách thông tin ID, Fullname, lớp thực tập viên có lớp 'VTI002'
 -- 			Bước 3: Sử dụng UNION để nối 2 kết quả ở bước 1 và 2
+SELECT		*
+FROM		Trainee
+WHERE		Training_Class = 'VTI001'
+UNION
+SELECT		*
+FROM		Trainee
+WHERE		Training_Class = 'VTI002';
