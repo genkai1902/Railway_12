@@ -11,18 +11,29 @@ FROM		Department
 WHERE		DepartmentName = 'Sale';
 
 -- Question 4: lấy ra thông tin account có full name dài nhất
-SELECT		*
-FROM		Account
-ORDER BY 	length(FullName) DESC
-LIMIT 		1;
+SELECT		*, length(fullname)
+FROM		`Account`
+WHERE		length(fullname) = (SELECT 	MAX(length(fullname)) 
+								FROM 	`Account`);
 		
 
 -- Question 5: Lấy ra thông tin account có full name dài nhất và thuộc phòng ban có id = 3
-SELECT		*
+SELECT		*, length(fullname)
 FROM		Account
-WHERE		DepartmentID = 3
-ORDER BY	length(FullName) DESC
-LIMIT		1;
+WHERE		DepartmentID = 3 AND length(fullname) = (SELECT 	MAX(length(fullname)) 
+													 FROM 		Account 
+                                                     WHERE 		DepartmentID = 3);                                                     
+-- =============================                                                     
+SELECT		*, length(FullName)
+FROM		(SELECT * FROM account WHERE departmentID = 3) AS Vt
+WHERE		length(fullname) = (SELECT MAX(length(fullname))
+								FROM (SELECT * FROM account WHERE DepartmentID = 3) AS Vt);
+-- =============================
+WITH cte_Vt AS (SELECT * FROM `Account` WHERE departmentID = 3)
+SELECT		*
+FROM		cte_Vt
+WHERE		length(FullName) = (SELECT 	MAX(length(FullName))
+								FROM	cte_Vt);
 
 -- Question 6: Lấy ra tên group đã tham gia trước ngày 20/12/2019
 SELECT		*
@@ -76,10 +87,12 @@ WHERE		AccountID = 5;
 
 -- Question 15: update account có id = 5 sẽ thuộc group có id = 4
 -- Câu này em bị Error 1062 suốt mà không sửa không làm được
+-- Liên kết nhiều-nhiều
 
 SELECT		*
-FROM		GroupAccount;
+FROM		GroupAccount
+WHERE		GroupID = 2 AND accountID = 13;
 
 UPDATE		`GroupAccount`
 SET			GroupID = 2
-WHERE		AccountID = 13;
+WHERE		AccountID = 1000;
