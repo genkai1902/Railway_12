@@ -96,9 +96,9 @@ WHERE		length(FullName) = (SELECT	MAX(length(FullName))
 								FROM	Trainee);
 
 -- Question 13 Lấy ra 5 thực tập sinh có tuổi nhỏ nhất
-SELECT		*
+SELECT		*, year(curdate()) - year(birth_date) AS Age
 FROM		Trainee
-ORDER BY	Birth_Date DESC
+ORDER BY	Age
 LIMIT 		5;
 
 -- Question 14: Viết lệnh để lấy ra tất cả các thực tập sinh là ET, 1 ET thực tập sinh là những người thỏa mãn số điểm như sau:
