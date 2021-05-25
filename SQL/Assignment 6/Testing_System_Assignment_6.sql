@@ -62,15 +62,51 @@ DROP PROCEDURE IF EXISTS find_fullname_or_username;
 DELIMITER $$
 CREATE PROCEDURE find_fullname_or_username(IN str_input VARCHAR(50))
 	BEGIN
-		SELECT * FROM `account` WHERE username LIKE str_input;
-        SELECT * FROM `group` WHERE	groupName LIKE str_input;
+		SELECT a.Username, g.GroupName FROM `account` a
+        JOIN `groupaccount` ga ON a.accountID = ga.accountID
+        JOIN `group` g ON ga.groupID = g.groupID
+        WHERE a.username LIKE str_input OR g.GroupName LIKE str_input;
     END $$
 DELIMITER ;
 
-CALL find_fullname_or_username('vti');
--- Question 7: Viết 1 store cho phép người dùng nhập vào thông tin fullName, email và trong store sẽ tự động gán: username sẽ giống email nhưng bỏ phần @..mail đi positionID: sẽ có default là developer departmentID: sẽ được cho vào 1 phòng chờ Sau đó in ra kết quả tạo thành công 
+CALL find_fullname_or_username('%yba%');
+
+-- Question 7: Viết 1 store cho phép người dùng nhập vào thông tin fullName, email và trong store sẽ tự động gán: 
+-- username sẽ giống email nhưng bỏ phần @..mail đi 
+-- positionID: sẽ có default là developer 
+-- departmentID: sẽ được cho vào 1 phòng chờ 
+-- Sau đó in ra kết quả tạo thành công 
+DROP PROCEDURE IF EXISTS insert_new_user;
+DELIMITER $$
+CREATE PROCEDURE insert_new_user(IN in_usermail VARCHAR(100), IN in_fullname NVARCHAR(50))
+	BEGIN
+		DECLARE username VARCHAR(50) DEFAULT substring_index(in_email, '@', 1);
+		DECLARE positionID MEDIUMINT UNSIGNED DEFAULT 1;
+        DECLARE departmentID MEDIUMINT UNSIGNED DEFAULT 5;
+                
+		INSERT INTO `account` (fullname, Email, username, positionID, departmentID)
+		VALUES	(in_fullname, in_usermail, username, positionID, departmentID);
+        
+        SELECT * FROM `account` a
+        WHERE a.username = username;
+	END $$
+DELIMITER ;
+
+CALL insert_new_user('nam.nguyenhai@vtiacademy.edu.vn', 'Nguyen Hai Nam');
+
 -- Question 8: Viết 1 store cho phép người dùng nhập vào Essay hoặc Multiple-Choice để thống kê câu hỏi essay hoặc multiple-choice nào có content dài nhất 
 -- Question 9: Viết 1 store cho phép người dùng xóa exam dựa vào ID 
+DROP PROCEDURE IF EXISTS del_exam_by_ID;
+DELIMITER $$
+CREATE PROCEDURE del_exam_by_ID(IN _in_examID MEDIUMINT UNSIGNED)
+	BEGIN
+		SELECT * FROM exam
+        WHERE examID = in_examID;
+	END $$
+DELIMITER ;
+
+CALL del_exam_by_ID(1);
+
 -- Question 10: Tìm ra các exam được tạo từ 3 năm trước và xóa các exam đó đi (sử dụng store ở câu 9 để xóa) Sau đó in số lượng record đã remove từ các table liên quan trong khi removing
 -- Question 11: Viết store cho phép người dùng xóa phòng ban bằng cách người dùng nhập vào tên phòng ban và các account thuộc phòng ban đó sẽ được chuyển về phòng ban default là phòng ban chờ việc 
 -- Question 12: Viết store để in ra mỗi tháng có bao nhiêu câu hỏi được tạo trong năm nay
