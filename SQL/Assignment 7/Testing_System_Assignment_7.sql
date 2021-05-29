@@ -118,15 +118,57 @@ CREATE TRIGGER del_email
 	BEFORE DELETE ON `account`
     FOR EACH ROW
     BEGIN
-        IF NEW.email LIKE 'admin@gmail.com'
+        IF OLD.email LIKE 'admin@gmail.com'
 			THEN SIGNAL SQLSTATE '12345'
             SET MESSAGE_TEXT = "Cannot delete admin's email";
 		END IF;
 	END $$
 DELIMITER ;
 
--- Question 6: Không sử dụng cấu hình default cho field DepartmentID của table Account, hãy tạo trigger cho phép người dùng khi tạo account không điền vào departmentID thì sẽ được phân vào phòng ban "waiting Department"
+DELETE FROM `account` WHERE AccountID = 1;
+
+-- Question 6: Không sử dụng cấu hình default cho field DepartmentID của table Account, hãy tạo trigger cho phép người dùng khi tạo account không điền vào departmentID 
+-- thì sẽ được phân vào phòng ban "waiting Department"
+DROP TRIGGER IF EXISTS set_default_dep;
+DELIMITER $$
+CREATE TRIGGER set_default_dep
+	BEFORE INSERT ON `account`
+    FOR EACH ROW
+    BEGIN
+		DECLARE v_depID INT UNSIGNED;
+        SELECT NEW.departmentID INTO v_depID FROM `account` LIMIT 1;
+        IF v_depID IS NULL
+			THEN SET NEW.DepartmentID = 13;
+		END IF;
+	END $$
+DELIMITER ;
+
+INSERT INTO `testingsystem3`.`department` (`DepartmentID`, `DepartmentName`) VALUES ('13', 'waiting department');
+
+INSERT INTO `testingsystem3`.`account` (`Email`, `Username`, `FullName`, `PositionID`, `CreateDate`) 
+VALUES ('abc6789@gmail.com', 'abc6789', 'a b c', '3', '2021-05-05 00:00:00');
+
+
 -- Question 7: Cấu hình 1 bài thi chỉ cho phép user tạo tối đa 4 answers cho mỗi question, trong đó có tối đa 2 đáp án đúng.
+DROP TRIGGER IF EXISTS set_max_answer;
+DELIMITER $$
+CREATE TRIGGER set_max_answer
+	BEFORE INSERT ON `answer`
+    FOR EACH ROW
+    BEGIN
+		DECLARE v_countTA INT;
+        DECLARE v_countC INT;
+        SELECT COUNT(*) INTO v_countTA FROM answer GROUP BY QuestionID;
+        SELECT COUNT(*) INTO v_countC FROM answer GROUP BY QuestionID, isCorrect HAVING isCorrect = 1;
+        IF v_countTA > 4 OR v_countC > 2
+			THEN SIGNAL SQLSTATE '12345'
+            SET MESSAGE_TEXT = 'Cau hoi da dat gioi han cau tra loi hoac co qua nhieu dap an dung.';
+		END IF;
+	END $$
+DELIMITER ;
+INSERT INTO `testingsystem3`.`answer` (`AnswerID`, `Content`, `QuestionID`, `isCorrect`) VALUES ('254', 'abc6789', '35', b'1');
+
+
 -- Question 8: Viết trigger sửa lại dữ liệu cho đúng: Nếu người dùng nhập vào gender của account là nam, nữ, chưa xác định Thì sẽ đổi lại thành M, F, U cho giống với cấu hình ở database 
 -- Question 9: Viết trigger không cho phép người dùng xóa bài thi mới tạo được 2 ngày 
 -- Question 10: Viết trigger chỉ cho phép người dùng chỉ được update, delete các question khi question đó chưa nằm trong exam nào 
