@@ -118,32 +118,37 @@ CREATE TRIGGER del_email
 	BEFORE DELETE ON `account`
     FOR EACH ROW
     BEGIN
-        IF OLD.email LIKE 'admin@gmail.com'
-			THEN SIGNAL SQLSTATE '12345'
+		DECLARE v_accountID INT;
+        SELECT accountID INTO v_accountID FROM `account` WHERE email = OLD.email;
+        IF OLD.email LIKE 'admin@gmail.com' THEN 
+			SIGNAL SQLSTATE '12345'
             SET MESSAGE_TEXT = "Cannot delete admin's email";
+		ELSE
+			UPDATE `group` SET CreatorID = NULL WHERE CreatorID = v_accountID;
+			DELETE FROM groupaccount WHERE accountID = v_accountID;
+            UPDATE question SET CreatorID = NULL WHERE CreatorID = v_accountID;
+            UPDATE exam SET CreatorID = NULL WHERE CreatorID = v_accountID;            
 		END IF;
 	END $$
 DELIMITER ;
-
 DELETE FROM `account` WHERE AccountID = 1;
+DELETE FROM `account` WHERE AccountID = 2;
 
--- Question 6: Không sử dụng cấu hình default cho field DepartmentID của table Account, hãy tạo trigger cho phép người dùng khi tạo account không điền vào departmentID 
--- thì sẽ được phân vào phòng ban "waiting Department"
+-- Question 6: 	Không sử dụng cấu hình default cho field DepartmentID của table Account, hãy tạo trigger cho phép người dùng khi tạo account không điền vào departmentID 
+-- 				thì sẽ được phân vào phòng ban "waiting Department"
 DROP TRIGGER IF EXISTS set_default_dep;
 DELIMITER $$
 CREATE TRIGGER set_default_dep
 	BEFORE INSERT ON `account`
     FOR EACH ROW
     BEGIN
-		DECLARE v_depID INT UNSIGNED;
-        SELECT NEW.departmentID INTO v_depID FROM `account` LIMIT 1;
-        IF v_depID IS NULL
-			THEN SET NEW.DepartmentID = 13;
+		DECLARE v_depID INT;
+        SELECT departmentID INTO v_depID FROM department WHERE DepartmentName = 'waiting department';
+        IF NEW.DepartmentID IS NULL THEN 
+			SET NEW.DepartmentID = v_depID;
 		END IF;
 	END $$
 DELIMITER ;
-
-INSERT INTO `testingsystem3`.`department` (`DepartmentID`, `DepartmentName`) VALUES ('13', 'waiting department');
 
 INSERT INTO `testingsystem3`.`account` (`Email`, `Username`, `FullName`, `PositionID`, `CreateDate`) 
 VALUES ('abc6789@gmail.com', 'abc6789', 'a b c', '3', '2021-05-05 00:00:00');
@@ -158,23 +163,111 @@ CREATE TRIGGER set_max_answer
     BEGIN
 		DECLARE v_countTA INT;
         DECLARE v_countC INT;
-        SELECT COUNT(*) INTO v_countTA FROM answer GROUP BY QuestionID;
-        SELECT COUNT(*) INTO v_countC FROM answer GROUP BY QuestionID, isCorrect HAVING isCorrect = 1;
-        IF v_countTA > 4 OR v_countC > 2
-			THEN SIGNAL SQLSTATE '12345'
-            SET MESSAGE_TEXT = 'Cau hoi da dat gioi han cau tra loi hoac co qua nhieu dap an dung.';
+        SELECT COUNT(*) INTO v_countTA FROM answer WHERE QuestionID = NEW.questionID;
+        SELECT COUNT(*) INTO v_countC FROM answer WHERE QuestionID = NEW.questionID AND isCorrect = 1;
+        IF v_countTA < 4 THEN 
+			IF v_countC >= 2 THEN
+				SIGNAL SQLSTATE '12345'
+				SET MESSAGE_TEXT = 'Cau hoi co qua nhieu dap an dung.';
+			END IF;
+        ELSE
+			SIGNAL SQLSTATE '12345'
+			SET MESSAGE_TEXT = 'Cau hoi da dat gioi han so luong cau tra loi.';
 		END IF;
 	END $$
 DELIMITER ;
-INSERT INTO `testingsystem3`.`answer` (`AnswerID`, `Content`, `QuestionID`, `isCorrect`) VALUES ('254', 'abc6789', '35', b'1');
+INSERT INTO `testingsystem3`.`answer` (`Content`, `QuestionID`, `isCorrect`) VALUES ('abc6789', '35', 1);
 
 
--- Question 8: Viết trigger sửa lại dữ liệu cho đúng: Nếu người dùng nhập vào gender của account là nam, nữ, chưa xác định Thì sẽ đổi lại thành M, F, U cho giống với cấu hình ở database 
+-- Question 8: 	Viết trigger sửa lại dữ liệu cho đúng: Nếu người dùng nhập vào gender của account là nam, nữ, chưa xác định 
+-- 				Thì sẽ đổi lại thành M, F, U cho giống với cấu hình ở database 
+DROP TRIGGER IF EXISTS check_insert_gender;
+DELIMITER $$
+CREATE TRIGGER check_insert_gender
+	BEFORE INSERT ON `account`
+    FOR EACH ROW 
+    BEGIN
+		IF NEW.gender = 'nam' THEN
+			SET NEW.gender = 'M';
+		ELSEIF NEW.gender = 'nu' THEN
+			SET NEW.gender = 'F';
+        ELSEIF NEW.gender = 'chua xac dinh' THEN
+			SET NEW.gender = 'U';  
+		END IF;
+	END $$
+DELIMITER ;
+
 -- Question 9: Viết trigger không cho phép người dùng xóa bài thi mới tạo được 2 ngày 
+DROP TRIGGER IF EXISTS del_exam;
+DELIMITER $$
+CREATE TRIGGER del_exam
+	BEFORE DELETE ON exam
+    FOR EACH ROW
+    BEGIN
+		DECLARE v_createdate DATETIME;
+        SELECT createDate INTO v_createDate FROM exam WHERE CreateDate = OLD.CreateDate;
+        IF date_sub(NOW(), interval 2 day) < v_createDate THEN
+			SIGNAL SQLSTATE '12345'
+            SET MESSAGE_TEXT = 'Khong duoc phep xoa bai thi moi tao duoi 2 ngay';
+		END IF;
+	END $$
+DELIMITER ;
+
+DELETE FROM exam WHERE code = 'vtiq011';
+INSERT INTO `exam` (`Code`, `Title`, `CategoryID`, `Duration`, `CreatorID`, `CreateDate`) 
+VALUES ('VTIQ011', 'test', '2', '60', '2', '2021-05-29 00:00:00');
+
+
 -- Question 10: Viết trigger chỉ cho phép người dùng chỉ được update, delete các question khi question đó chưa nằm trong exam nào 
--- Question 12: Lấy ra thông tin exam trong đó: Duration <= 30 thì sẽ đổi thành giá trị "Short time" 30 < Duration <= 60 thì sẽ đổi thành giá trị "Medium time" Duration > 60 thì sẽ đổi thành giá trị "Long time"
+DROP TRIGGER IF EXISTS check_update_question;
+DELIMITER $$
+CREATE TRIGGER check_update_question
+	BEFORE UPDATE ON `question`
+    FOR EACH ROW
+    BEGIN
+		DECLARE v_count INT;
+        SELECT count(*) INTO v_count FROM examquestion WHERE questionID = NEW.questionID;
+			IF v_count > 0 THEN
+				SIGNAL SQLSTATE '12345'
+				SET MESSAGE_TEXT = 'Khong the sua cau hoi da ton tai trong bai kiem tra.';
+			END IF;
+	END $$
+DELIMITER ;
+
+DROP TRIGGER IF EXISTS check_delete_question;
+DELIMITER $$
+CREATE TRIGGER check_delete_question
+	BEFORE UPDATE ON `question`
+    FOR EACH ROW
+    BEGIN
+		DECLARE v_count INT;
+        SELECT count(*) INTO v_count FROM examquestion WHERE questionID = OLD.questionID;
+			IF v_count > 0 THEN
+				SIGNAL SQLSTATE '12345'
+				SET MESSAGE_TEXT = 'Khong the xoa cau hoi da ton tai trong bai kiem tra.';
+			END IF;
+	END $$
+DELIMITER ;
+
+
+-- Question 12: Lấy ra thông tin exam trong đó: Duration <= 30 thì sẽ đổi thành giá trị "Short time" 30 < Duration <= 60 
+-- 				thì sẽ đổi thành giá trị "Medium time" Duration > 60 thì sẽ đổi thành giá trị "Long time"
+
+
 -- Question 13: Thống kê số account trong mỗi group và in ra thêm 1 column nữa có tên là the_number_user_amount và mang giá trị được quy định như sau:
--- Nếu số lượng user trong group =< 5 thì sẽ có giá trị là few 
--- Nếu số lượng user trong group <= 20 và > 5  thì sẽ có giá trị là normal 
--- Nếu số lượng user trong group > 20 thì sẽ có giá trị là higher 
+				-- Nếu số lượng user trong group =< 5 thì sẽ có giá trị là few 
+				-- Nếu số lượng user trong group <= 20 và > 5  thì sẽ có giá trị là normal 
+				-- Nếu số lượng user trong group > 20 thì sẽ có giá trị là higher 
 -- Question 14: Thống kê số mỗi phòng ban có bao nhiêu user, nếu phòng ban nào không có user thì sẽ thay đổi giá trị 0 thành "Không có User"
+-- DROP TRIGGER IF EXISTS thong_ke_phong_ban;
+-- DELIMITER $$
+-- CREATE TRIGGER thong_ke_phong_ban
+
+SELECT d.departmentID, d.departmentName, case 
+when count(a.departmentID) = 0 THEN 'Khong co ai'
+ELSE count(a.departmentID)
+END AS 'So luong User'
+FROM department d LEFT JOIN `account` a ON d.departmentID = a.DepartmentID group by d.DepartmentID;
+
+
+-- 1- 2- 3-a 4-b 5-b 6-c 7-b 8-d 9-d 10-b 11-d 12-d 13-a 14-d 15-a 16-c 17-b 18-d 19-c 20-a 21-a 22-a 23-b 24-a 25-c 

@@ -66,7 +66,7 @@ QuestionID MEDIUMINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 Content NVARCHAR(100) NOT NULL,
 CategoryID MEDIUMINT UNSIGNED NOT NULL,
 TypeID MEDIUMINT UNSIGNED NOT NULL,
-CreatorID MEDIUMINT UNSIGNED NOT NULL,
+CreatorID MEDIUMINT UNSIGNED,
 CreateDate DATETIME DEFAULT NOW(),
 FOREIGN KEY(CategoryID) REFERENCES CategoryQuestion(CategoryID),
 FOREIGN KEY(TypeID) REFERENCES TypeQuestion(TypeID),
@@ -89,7 +89,7 @@ ExamID MEDIUMINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 Title NVARCHAR(50) NOT NULL,
 CategoryID MEDIUMINT UNSIGNED NOT NULL,
 Duration MEDIUMINT UNSIGNED NOT NULL,
-CreatorID MEDIUMINT UNSIGNED NOT NULL,
+CreatorID MEDIUMINT UNSIGNED,
 CreateDate DATETIME DEFAULT NOW(),
 FOREIGN KEY(CategoryID) REFERENCES CategoryQuestion(CategoryID) ON DELETE CASCADE,
 FOREIGN KEY(CreatorID) REFERENCES `Account`(AccountId)
@@ -122,7 +122,11 @@ insert into department (DepartmentName) values ('Sale');
 insert into department (DepartmentName) values ('Training');
 insert into department (DepartmentName) values ('Human Resources');
 insert into department (DepartmentName) values ('Research and Development');
-insert into department (DepartmentName) values ('Marketing');insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
+insert into department (DepartmentName) values ('Marketing');
+INSERT INTO department (DepartmentName) VALUES ('waiting department');
+
+
+insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('lgoodge0@msn.com', 'lgoodge0', 'Lyman Goodge', 11, 3, '2017-04-09');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('dgeertz1@bluehost.com', 'dgeertz1', 'Dal Geertz', 3, 2, '2020-09-13');
@@ -159,7 +163,8 @@ insert into account (Email, Username, FullName, DepartmentID, PositionID, Create
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('jwarykh@cam.ac.uk', 'jwarykh', 'Jorge Waryk', 1, 1, '2020-04-30');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
-('nmariansi@studiopress.com', 'nmariansi', 'Northrup Marians', 3, 3, '2019-08-28');insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
+('nmariansi@studiopress.com', 'nmariansi', 'Northrup Marians', 3, 3, '2019-08-28');
+insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('aapedailej@printfriendly.com', 'aapedailej', 'Alwyn Apedaile', 2, 4, '2017-10-25');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('bmastersk@census.gov', 'bmastersk', 'Bridie Masters', 5, 2, '2020-02-11');
@@ -196,7 +201,8 @@ insert into account (Email, Username, FullName, DepartmentID, PositionID, Create
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('mgorce10@amazonaws.com', 'mgorce10', 'Marion Gorce', 8, 1, '2019-05-16');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
-('nvan11@nhs.uk', 'nvan11', 'Nikolaus Van Velden', 7, 2, '2020-08-30');insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
+('nvan11@nhs.uk', 'nvan11', 'Nikolaus Van Velden', 7, 2, '2020-08-30');
+insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('bnoir12@seesaa.net', 'bnoir12', 'Benni Noir', 8, 3, '2019-05-06');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('xchevolleau13@cnbc.com', 'xchevolleau13', 'Xena Chevolleau', 10, 1, '2017-02-22');
@@ -233,7 +239,8 @@ insert into account (Email, Username, FullName, DepartmentID, PositionID, Create
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('pmelonby1j@bravesites.com', 'pmelonby1j', 'Peder Melonby', 1, 3, '2020-02-25');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
-('tmacneachtain1k@twitter.com', 'tmacneachtain1k', 'Teodoro MacNeachtain', 2, 1, '2018-05-12');insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
+('tmacneachtain1k@twitter.com', 'tmacneachtain1k', 'Teodoro MacNeachtain', 2, 1, '2018-05-12');
+insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('ddougharty1l@ucla.edu', 'ddougharty1l', 'Darnall Dougharty', 11, 3, '2021-02-08');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('aelies1m@sphinn.com', 'aelies1m', 'Alfredo Elies', 8, 1, '2018-04-30');
@@ -270,7 +277,8 @@ insert into account (Email, Username, FullName, DepartmentID, PositionID, Create
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('isyson22@tinypic.com', 'isyson22', 'Iris Syson', 9, 4, '2018-10-26');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
-('wbreslin23@storify.com', 'wbreslin23', 'Wyatt Breslin', 10, 4, '2019-10-19');insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
+('wbreslin23@storify.com', 'wbreslin23', 'Wyatt Breslin', 10, 4, '2019-10-19');
+insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('lduhig24@ifeng.com', 'lduhig24', 'Livvyy Duhig', 4, 3, '2020-11-25');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('hdarling25@simplemachines.org', 'hdarling25', 'Harriette Darling', 11, 2, '2017-12-13');
@@ -307,7 +315,8 @@ insert into account (Email, Username, FullName, DepartmentID, PositionID, Create
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('nestcot2l@goo.gl', 'nestcot2l', 'Nick Estcot', 1, 2, '2020-06-22');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
-('psighart2m@squarespace.com', 'psighart2m', 'Pietro Sighart', 7, 1, '2019-01-05');insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
+('psighart2m@squarespace.com', 'psighart2m', 'Pietro Sighart', 7, 1, '2019-01-05');
+insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('randreichik2n@google.de', 'randreichik2n', 'Redford Andreichik', 2, 4, '2019-01-29');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('edi2o@scientificamerican.com', 'edi2o', 'Eugenia Di Pietro', 11, 3, '2019-09-02');
@@ -344,7 +353,8 @@ insert into account (Email, Username, FullName, DepartmentID, PositionID, Create
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('laveson34@umn.edu', 'laveson34', 'Laverne Aveson', 3, 1, '2018-09-23');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
-('emc35@vistaprint.com', 'emc35', 'Eugenie Mc Ilwrick', 12, 3, '2019-06-23');insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
+('emc35@vistaprint.com', 'emc35', 'Eugenie Mc Ilwrick', 12, 3, '2019-06-23');
+insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('ctocqueville36@wp.com', 'ctocqueville36', 'Collette Tocqueville', 10, 1, '2019-06-14');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('rszwandt37@squarespace.com', 'rszwandt37', 'Roanne Szwandt', 9, 3, '2018-05-18');
@@ -381,7 +391,8 @@ insert into account (Email, Username, FullName, DepartmentID, PositionID, Create
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('gmeaden3n@utexas.edu', 'gmeaden3n', 'Gwyn Meaden', 10, 3, '2019-09-13');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
-('agirt3o@blogtalkradio.com', 'agirt3o', 'Augie Girt', 8, 1, '2019-01-09');insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
+('agirt3o@blogtalkradio.com', 'agirt3o', 'Augie Girt', 8, 1, '2019-01-09');
+insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('adecruse3p@reddit.com', 'adecruse3p', 'Art Decruse', 3, 2, '2019-10-27');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('rbenham3q@unesco.org', 'rbenham3q', 'Rafaelia Benham', 1, 3, '2019-12-31');
@@ -418,7 +429,8 @@ insert into account (Email, Username, FullName, DepartmentID, PositionID, Create
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('mmckew46@fda.gov', 'mmckew46', 'Melitta McKew', 6, 4, '2019-12-05');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
-('gdignon47@infoseek.co.jp', 'gdignon47', 'Gayle Dignon', 4, 3, '2019-06-11');insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
+('gdignon47@infoseek.co.jp', 'gdignon47', 'Gayle Dignon', 4, 3, '2019-06-11');
+insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('ajoule48@webmd.com', 'ajoule48', 'Aube Joule', 12, 4, '2019-09-12');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('asaur49@webnode.com', 'asaur49', 'Adan Saur', 9, 2, '2017-06-18');
@@ -455,7 +467,8 @@ insert into account (Email, Username, FullName, DepartmentID, PositionID, Create
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('cendacott4p@ask.com', 'cendacott4p', 'Currey Endacott', 12, 2, '2018-06-24');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
-('lgrigsby4q@reddit.com', 'lgrigsby4q', 'Lisle Grigsby', 11, 3, '2021-02-05');insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
+('lgrigsby4q@reddit.com', 'lgrigsby4q', 'Lisle Grigsby', 11, 3, '2021-02-05');
+insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('fmeak4r@hexun.com', 'fmeak4r', 'Forrester Meak', 10, 2, '2018-09-14');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('bkinge4s@nature.com', 'bkinge4s', 'Bernadina Kinge', 3, 4, '2018-03-07');
@@ -492,7 +505,8 @@ insert into account (Email, Username, FullName, DepartmentID, PositionID, Create
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('ivann58@csmonitor.com', 'ivann58', 'Ingrim Vann', 6, 2, '2021-01-22');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
-('mcantillon59@newsvine.com', 'mcantillon59', 'Melva Cantillon', 1, 3, '2019-05-30');insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
+('mcantillon59@newsvine.com', 'mcantillon59', 'Melva Cantillon', 1, 3, '2019-05-30');
+insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('wbisson5a@instagram.com', 'wbisson5a', 'Winfred Bisson', 10, 1, '2019-04-19');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('nfausch5b@tripod.com', 'nfausch5b', 'Nilson Fausch', 10, 3, '2017-11-29');
@@ -529,7 +543,8 @@ insert into account (Email, Username, FullName, DepartmentID, PositionID, Create
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('afairfoul5r@live.com', 'afairfoul5r', 'Agnella Fairfoul', 9, 4, '2020-05-11');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
-('hbreed5s@opensource.org', 'hbreed5s', 'Helen-elizabeth Breed', 5, 2, '2019-06-05');insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
+('hbreed5s@opensource.org', 'hbreed5s', 'Helen-elizabeth Breed', 5, 2, '2019-06-05');
+insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('ajouaneton5t@army.mil', 'ajouaneton5t', 'Amby Jouaneton', 5, 1, '2020-02-24');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('tmesias5u@networkadvertising.org', 'tmesias5u', 'Thayne Mesias', 10, 4, '2020-03-16');
@@ -566,7 +581,8 @@ insert into account (Email, Username, FullName, DepartmentID, PositionID, Create
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('kkincaid6a@ftc.gov', 'kkincaid6a', 'Kiersten Kincaid', 10, 2, '2020-12-09');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
-('wdurnell6b@simplemachines.org', 'wdurnell6b', 'Witty Durnell', 9, 1, '2019-08-17');insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
+('wdurnell6b@simplemachines.org', 'wdurnell6b', 'Witty Durnell', 9, 1, '2019-08-17');
+insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('ndadley6c@china.com.cn', 'ndadley6c', 'Nollie Dadley', 3, 2, '2017-09-01');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('eover6d@economist.com', 'eover6d', 'Erina Over', 9, 2, '2017-04-02');
@@ -603,7 +619,8 @@ insert into account (Email, Username, FullName, DepartmentID, PositionID, Create
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('lrosindill6t@npr.org', 'lrosindill6t', 'Lindy Rosindill', 4, 3, '2019-11-23');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
-('ewoollacott6u@lycos.com', 'ewoollacott6u', 'Ev Woollacott', 11, 1, '2018-12-02');insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
+('ewoollacott6u@lycos.com', 'ewoollacott6u', 'Ev Woollacott', 11, 1, '2018-12-02');
+insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('caskaw6v@reddit.com', 'caskaw6v', 'Chryste Askaw', 9, 4, '2017-12-25');
 insert into account (Email, Username, FullName, DepartmentID, PositionID, CreateDate) values
 ('tlackney6w@bloomberg.com', 'tlackney6w', 'Tawnya Lackney', 8, 2, '2019-05-16');
@@ -636,7 +653,8 @@ insert into groupaccount (GroupID, AccountID, JoinDate) values (6, 190 , '2019-0
 insert into groupaccount (GroupID, AccountID, JoinDate) values (7, 240 , '2020-06-29');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (5, 36 , '2019-12-26');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (2, 135 , '2019-10-10');
-insert into groupaccount (GroupID, AccountID, JoinDate) values (10, 160 , '2019-12-09');insert into groupaccount (GroupID, AccountID, JoinDate) values (5, 131 , '2019-09-26');
+insert into groupaccount (GroupID, AccountID, JoinDate) values (10, 160 , '2019-12-09');
+insert into groupaccount (GroupID, AccountID, JoinDate) values (5, 131 , '2019-09-26');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (10, 85 , '2020-07-26');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (10, 55 , '2019-06-02');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (4, 123 , '2018-06-07');
@@ -666,7 +684,8 @@ insert into groupaccount (GroupID, AccountID, JoinDate) values (6, 236 , '2020-1
 insert into groupaccount (GroupID, AccountID, JoinDate) values (7, 60 , '2021-02-21');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (7, 162 , '2018-06-13');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (8, 15 , '2021-01-26');
-insert into groupaccount (GroupID, AccountID, JoinDate) values (10, 159 , '2020-09-22');insert into groupaccount (GroupID, AccountID, JoinDate) values (3, 125 , '2019-11-16');
+insert into groupaccount (GroupID, AccountID, JoinDate) values (10, 159 , '2020-09-22');
+insert into groupaccount (GroupID, AccountID, JoinDate) values (3, 125 , '2019-11-16');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (10, 50 , '2020-02-14');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (8, 167 , '2019-07-04');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (9, 77 , '2019-04-20');
@@ -696,7 +715,8 @@ insert into groupaccount (GroupID, AccountID, JoinDate) values (7, 80 , '2021-02
 insert into groupaccount (GroupID, AccountID, JoinDate) values (10, 112 , '2018-09-02');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (5, 107 , '2020-09-16');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (4, 75 , '2019-10-01');
-insert into groupaccount (GroupID, AccountID, JoinDate) values (5, 89 , '2018-11-11');insert into groupaccount (GroupID, AccountID, JoinDate) values (10, 48 , '2018-05-05');
+insert into groupaccount (GroupID, AccountID, JoinDate) values (5, 89 , '2018-11-11');
+insert into groupaccount (GroupID, AccountID, JoinDate) values (10, 48 , '2018-05-05');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (6, 209 , '2018-08-27');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (4, 149 , '2020-11-13');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (4, 107 , '2019-01-16');
@@ -726,7 +746,8 @@ insert into groupaccount (GroupID, AccountID, JoinDate) values (10, 233 , '2018-
 insert into groupaccount (GroupID, AccountID, JoinDate) values (4, 230 , '2020-06-15');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (7, 170 , '2018-04-29');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (6, 78 , '2019-10-05');
-insert into groupaccount (GroupID, AccountID, JoinDate) values (6, 116 , '2020-11-23');insert into groupaccount (GroupID, AccountID, JoinDate) values (9, 60 , '2019-12-11');
+insert into groupaccount (GroupID, AccountID, JoinDate) values (6, 116 , '2020-11-23');
+insert into groupaccount (GroupID, AccountID, JoinDate) values (9, 60 , '2019-12-11');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (10, 149 , '2018-12-19');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (5, 45 , '2018-03-02');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (7, 74 , '2018-03-11');
@@ -756,7 +777,8 @@ insert into groupaccount (GroupID, AccountID, JoinDate) values (3, 186 , '2020-0
 insert into groupaccount (GroupID, AccountID, JoinDate) values (1, 141 , '2019-02-28');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (9, 103 , '2020-01-06');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (3, 243 , '2021-02-20');
-insert into groupaccount (GroupID, AccountID, JoinDate) values (1, 13 , '2019-11-17');insert into groupaccount (GroupID, AccountID, JoinDate) values (5, 119 , '2020-01-22');
+insert into groupaccount (GroupID, AccountID, JoinDate) values (1, 13 , '2019-11-17');
+insert into groupaccount (GroupID, AccountID, JoinDate) values (5, 119 , '2020-01-22');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (8, 56 , '2020-03-16');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (7, 247 , '2018-12-30');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (6, 174 , '2021-01-04');
@@ -786,7 +808,8 @@ insert into groupaccount (GroupID, AccountID, JoinDate) values (1, 38 , '2018-10
 insert into groupaccount (GroupID, AccountID, JoinDate) values (2, 46 , '2019-01-14');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (2, 7 , '2019-12-05');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (1, 164 , '2018-10-29');
-insert into groupaccount (GroupID, AccountID, JoinDate) values (3, 11 , '2018-07-31');insert into groupaccount (GroupID, AccountID, JoinDate) values (10, 156 , '2019-07-14');
+insert into groupaccount (GroupID, AccountID, JoinDate) values (3, 11 , '2018-07-31');
+insert into groupaccount (GroupID, AccountID, JoinDate) values (10, 156 , '2019-07-14');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (10, 94 , '2019-08-31');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (6, 210 , '2021-01-23');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (8, 42 , '2020-03-27');
@@ -816,7 +839,8 @@ insert into groupaccount (GroupID, AccountID, JoinDate) values (9, 152 , '2019-0
 insert into groupaccount (GroupID, AccountID, JoinDate) values (7, 244 , '2019-12-15');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (2, 19 , '2018-09-09');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (2, 243 , '2019-05-20');
-insert into groupaccount (GroupID, AccountID, JoinDate) values (2, 186 , '2020-04-05');insert into groupaccount (GroupID, AccountID, JoinDate) values (9, 253 , '2020-01-05');
+insert into groupaccount (GroupID, AccountID, JoinDate) values (2, 186 , '2020-04-05');
+insert into groupaccount (GroupID, AccountID, JoinDate) values (9, 253 , '2020-01-05');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (7, 204 , '2020-07-04');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (4, 172 , '2018-06-30');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (3, 123 , '2019-11-25');
@@ -846,7 +870,8 @@ insert into groupaccount (GroupID, AccountID, JoinDate) values (2, 167 , '2018-0
 insert into groupaccount (GroupID, AccountID, JoinDate) values (7, 44 , '2021-02-03');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (2, 70 , '2020-08-22');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (1, 205 , '2018-04-26');
-insert into groupaccount (GroupID, AccountID, JoinDate) values (5, 181 , '2019-04-08');insert into groupaccount (GroupID, AccountID, JoinDate) values (7, 30 , '2020-04-12');
+insert into groupaccount (GroupID, AccountID, JoinDate) values (5, 181 , '2019-04-08');
+insert into groupaccount (GroupID, AccountID, JoinDate) values (7, 30 , '2020-04-12');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (7, 241 , '2021-02-23');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (8, 232 , '2019-02-05');
 insert into groupaccount (GroupID, AccountID, JoinDate) values (2, 120 , '2019-04-26');
@@ -907,7 +932,8 @@ insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 3505 ppI', 4, 1, 160, '2018-07-11');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
-7641 zR2', 10, 2, 158, '2019-07-15');insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
+7641 zR2', 10, 2, 158, '2019-07-15');
+insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 3328 sMB', 4, 2, 178, '2019-08-01');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 7404 kV6', 6, 2, 231, '2018-10-23');
@@ -944,7 +970,8 @@ insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 2812 uE1', 5, 2, 127, '2020-06-02');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
-5574 ndU', 4, 1, 3, '2019-03-25');insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
+5574 ndU', 4, 1, 3, '2019-03-25');
+insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 8625 oGT', 4, 2, 21, '2018-09-05');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 2818 kJZ', 9, 2, 178, '2021-02-03');
@@ -981,7 +1008,8 @@ insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 1572 fm5', 3, 1, 7, '2019-12-30');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
-4063 p06', 6, 2, 161, '2019-08-25');insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
+4063 p06', 6, 2, 161, '2019-08-25');
+insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 2840 mfW', 10, 2, 33, '2018-11-14');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 2014 kV3', 5, 2, 69, '2019-07-08');
@@ -1018,7 +1046,8 @@ insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 3286 tuS', 7, 1, 25, '2020-02-16');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
-6415 r3P', 9, 2, 38, '2020-07-18');insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
+6415 r3P', 9, 2, 38, '2020-07-18');
+insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 9821 g8N', 1, 1, 78, '2020-02-15');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 9859 vJH', 5, 2, 69, '2021-02-23');
@@ -1055,7 +1084,8 @@ insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 9552 uTK', 4, 2, 179, '2020-09-08');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
-8762 spH', 2, 2, 193, '2019-07-26');insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
+8762 spH', 2, 2, 193, '2019-07-26');
+insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 7641 qyH', 7, 2, 248, '2018-04-30');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 5375 vCT', 6, 2, 221, '2019-03-14');
@@ -1092,7 +1122,8 @@ insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 4107 tfS', 2, 1, 220, '2020-12-02');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
-4969 v2Z', 5, 2, 119, '2018-04-09');insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
+4969 v2Z', 5, 2, 119, '2018-04-09');
+insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 0416 kSH', 3, 1, 136, '2019-10-13');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 8091 rdW', 4, 1, 80, '2018-07-23');
@@ -1129,7 +1160,8 @@ insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 2345 dJI', 8, 2, 164, '2018-05-12');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
-8893 beL', 1, 1, 97, '2020-04-22');insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
+8893 beL', 1, 1, 97, '2020-04-22');
+insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 4497 sEW', 7, 2, 65, '2020-05-06');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 5432 nT5', 2, 1, 233, '2020-05-22');
@@ -1166,7 +1198,8 @@ insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 6593 r05', 6, 1, 145, '2020-12-17');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
-7547 qTA', 3, 1, 192, '2019-07-29');insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
+7547 qTA', 3, 1, 192, '2019-07-29');
+insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 9947 wPD', 9, 1, 55, '2019-05-14');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 5894 xTH', 4, 1, 156, '2021-01-19');
@@ -1203,7 +1236,8 @@ insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 2343 w5G', 7, 1, 27, '2019-02-03');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
-4434 oh7', 3, 1, 230, '2018-05-03');insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
+4434 oh7', 3, 1, 230, '2018-05-03');
+insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 1036 iR6', 7, 2, 181, '2018-05-08');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 3438 vvH', 5, 2, 219, '2021-02-14');
@@ -1240,7 +1274,8 @@ insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 0913 py0', 10, 2, 191, '2019-05-28');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
-9520 qwJ', 10, 1, 19, '2019-11-26');insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
+9520 qwJ', 10, 1, 19, '2019-11-26');
+insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 0293 kTQ', 7, 2, 184, '2018-10-11');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 8134 eA7', 10, 2, 110, '2018-09-18');
@@ -1277,7 +1312,8 @@ insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 8397 jZZ', 4, 2, 45, '2018-07-26');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
-0252 fd1', 6, 2, 170, '2021-02-15');insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
+0252 fd1', 6, 2, 170, '2021-02-15');
+insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 5139 fqQ', 6, 1, 115, '2021-02-20');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 1903 nlA', 7, 1, 241, '2018-11-23');
@@ -1314,7 +1350,8 @@ insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 6304 hJG', 3, 2, 243, '2020-08-19');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
-3880 t30', 2, 2, 205, '2019-10-27');insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
+3880 t30', 2, 2, 205, '2019-10-27');
+insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 2586 m14', 3, 1, 14, '2019-05-02');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 8922 tW9', 5, 2, 113, '2019-03-12');
@@ -1351,7 +1388,8 @@ insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 0277 o91', 10, 1, 184, '2020-07-15');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
-4484 vOR', 2, 1, 73, '2019-04-21');insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
+4484 vOR', 2, 1, 73, '2019-04-21');
+insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 4069 tCZ', 9, 1, 61, '2019-08-26');
 insert into Question (Content, CategoryID, TypeID, CreatorID, CreateDate) values ('Question VTI
 4437 ag4', 2, 1, 170, '2019-06-20');
@@ -1385,7 +1423,8 @@ insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 1027', 
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 4825', 130, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 5115', 21, 0);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 9582', 234, 0);
-insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 8527', 76, 1);insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 6529', 205, 1);
+insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 8527', 76, 1);
+insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 6529', 205, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 9137', 40, 0);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 3510', 95, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 4111', 59, 1);
@@ -1415,7 +1454,8 @@ insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 1845', 
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 1124', 151, 0);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 4975', 73, 0);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 1190', 114, 1);
-insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 2603', 205, 1);insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 6182', 64, 0);
+insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 2603', 205, 1);
+insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 6182', 64, 0);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 7777', 246, 0);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 1689', 12, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 4087', 31, 1);
@@ -1445,7 +1485,8 @@ insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 1309', 
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 5933', 46, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 3965', 79, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 5903', 149, 0);
-insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 5308', 26, 0);insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 1739', 109, 1);
+insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 5308', 26, 0);
+insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 1739', 109, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 1363', 180, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 5311', 126, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 3304', 203, 0);
@@ -1475,7 +1516,8 @@ insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 4141', 
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 5704', 167, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 7914', 7, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 0794', 231, 1);
-insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 3958', 109, 0);insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 3712', 123, 1);
+insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 3958', 109, 0);
+insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 3712', 123, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 4111', 71, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 7973', 174, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 4576', 187, 0);
@@ -1505,7 +1547,8 @@ insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 5857', 
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 7412', 172, 0);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 6434', 100, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 0154', 244, 1);
-insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 3937', 20, 0);insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 2753', 196, 1);
+insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 3937', 20, 0);
+insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 2753', 196, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 8917', 213, 0);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 5445', 240, 0);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 8673', 143, 0);
@@ -1535,7 +1578,8 @@ insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 6624', 
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 2794', 52, 0);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 3381', 131, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 4598', 109, 0);
-insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 7919', 5, 0);insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 4235', 215, 0);
+insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 7919', 5, 0);
+insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 4235', 215, 0);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 8232', 233, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 3696', 175, 0);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 8801', 164, 1);
@@ -1565,7 +1609,8 @@ insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 4643', 
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 0727', 56, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 1457', 35, 0);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 9780', 188, 0);
-insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 2454', 41, 1);insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 6044', 244, 0);
+insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 2454', 41, 1);
+insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 6044', 244, 0);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 9325', 134, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 1809', 9, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 1799', 248, 1);
@@ -1595,7 +1640,8 @@ insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 9719', 
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 3950', 211, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 4250', 56, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 7658', 3, 0);
-insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 8475', 87, 0);insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 4449', 242, 1);
+insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 8475', 87, 0);
+insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 4449', 242, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 2477', 47, 1);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 3539', 96, 0);
 insert into Answer (Content, QuestionID, isCorrect) values ('Answers VTI 9248', 210, 1);
@@ -1815,7 +1861,8 @@ insert into ExamQuestion (ExamID, QuestionID) values (1, 252);
 insert into ExamQuestion (ExamID, QuestionID) values (1, 196);
 insert into ExamQuestion (ExamID, QuestionID) values (6, 32);
 insert into ExamQuestion (ExamID, QuestionID) values (9, 51);
-insert into ExamQuestion (ExamID, QuestionID) values (1, 68);insert into ExamQuestion (ExamID, QuestionID) values (2, 209);
+insert into ExamQuestion (ExamID, QuestionID) values (1, 68);
+insert into ExamQuestion (ExamID, QuestionID) values (2, 209);
 insert into ExamQuestion (ExamID, QuestionID) values (3, 167);
 insert into ExamQuestion (ExamID, QuestionID) values (6, 94);
 insert into ExamQuestion (ExamID, QuestionID) values (2, 30);
@@ -1845,7 +1892,8 @@ insert into ExamQuestion (ExamID, QuestionID) values (3, 89);
 insert into ExamQuestion (ExamID, QuestionID) values (6, 240);
 insert into ExamQuestion (ExamID, QuestionID) values (4, 183);
 insert into ExamQuestion (ExamID, QuestionID) values (2, 93);
-insert into ExamQuestion (ExamID, QuestionID) values (5, 43);insert into ExamQuestion (ExamID, QuestionID) values (2, 129);
+insert into ExamQuestion (ExamID, QuestionID) values (5, 43);
+insert into ExamQuestion (ExamID, QuestionID) values (2, 129);
 insert into ExamQuestion (ExamID, QuestionID) values (2, 236);
 insert into ExamQuestion (ExamID, QuestionID) values (8, 72);
 insert into ExamQuestion (ExamID, QuestionID) values (6, 50);
@@ -1875,7 +1923,8 @@ insert into ExamQuestion (ExamID, QuestionID) values (3, 35);
 insert into ExamQuestion (ExamID, QuestionID) values (8, 5);
 insert into ExamQuestion (ExamID, QuestionID) values (4, 194);
 insert into ExamQuestion (ExamID, QuestionID) values (7, 242);
-insert into ExamQuestion (ExamID, QuestionID) values (4, 242);insert into ExamQuestion (ExamID, QuestionID) values (5, 78);
+insert into ExamQuestion (ExamID, QuestionID) values (4, 242);
+insert into ExamQuestion (ExamID, QuestionID) values (5, 78);
 insert into ExamQuestion (ExamID, QuestionID) values (8, 249);
 insert into ExamQuestion (ExamID, QuestionID) values (9, 253);
 insert into ExamQuestion (ExamID, QuestionID) values (10, 179);
