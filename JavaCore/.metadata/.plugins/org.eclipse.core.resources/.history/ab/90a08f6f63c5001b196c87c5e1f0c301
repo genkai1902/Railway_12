@@ -1,0 +1,6 @@
+package vti;
+
+public class Position {
+	int id;
+	PositionName positionName;
+}
