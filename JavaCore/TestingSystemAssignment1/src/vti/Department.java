@@ -1,6 +1,6 @@
-package vti.com.vn;
+package vti;
 
 public class Department {
-	int id;
+	int departmentID;
 	String departmentName;
 }

@@ -1,14 +1,13 @@
-package vti.com.vn;
+package vti;
 
 import java.util.Date;
 
 public class Account {
-	int id;
+	int accountID;
 	String email;
-	String userName;
+	String username; 
 	String fullName;
 	Department department;
 	Position position;
 	Date createDate;
-	Group[] dsNhom;
 }

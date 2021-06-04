@@ -1,6 +1,6 @@
-package vti.com.vn;
+package vti;
 
 public class Position {
-	int id;
+	int positionID;
 	PositionName positionName;
 }
