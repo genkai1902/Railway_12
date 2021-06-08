@@ -6,6 +6,7 @@ import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
 
+@SuppressWarnings("unused")
 public class Program {
 	public static void main(String[] args) {
 		
