@@ -111,15 +111,12 @@ public class Ex1_FlowControl {
 //		Nếu có mặt trong 4 group trở lên thì sẽ in ra text "Nhân viên này là người hóng chuyện, tham gia tất cả các group"		
 
 		System.out.println("________________________Question 2________________________");
-
-		if (account2.groups.length == 0) {
+		int count = account2.groups.length;
+		if (count == 0) {
 			System.out.println("Nhan vien nay khong tham gia group.");
-		} else if (account2.groups.length == 1) {
-			System.out.println("Nhan vien nay tham gia group " + account2.groups[0].name);
-		} else if (account2.groups.length == 2) {
-			System.out.println(
-					"Nhan vien nay tham gia 2 group la " + account2.groups[0].name + ", " + account2.groups[1].name);
-		} else if (account2.groups.length == 3) {
+		} else if (count == 1 || count == 2) {
+			System.out.println("Nhan vien nay tham gia group Java Fresher, C# Fresher");
+		} else if (count == 3) {
 			System.out.println("Nhan vien nay la nguoi quan trong, tham gia nhieu group.");
 		} else {
 			System.out.println("Nhan vien nay hong chuyen o tat ca cac group");
@@ -149,21 +146,23 @@ public class Ex1_FlowControl {
 //		Còn lại in ra "Nhóm có nhiều thành viên"
 
 		System.out.println("________________________Question 5________________________");
-
-		switch (accountOfGroups1.length) {
-		case 1:
-			System.out.println("Nhom co 1 thanh vien.");
-			break;
-		case 2:
-			System.out.println("Nhom co 2 thanh vien.");
-			break;
-		case 3:
-			System.out.println("Nhom co 3 thanh vien.");
-			break;
-		default:
-			System.out.println("Nhom co nhieu thanh vien.");
-			break;
-		}
+		if (accountOfGroups1 == null)
+			System.out.println("Nhom nay chua co thanh vien");
+		else
+			switch (accountOfGroups1.length) {
+			case 1:
+				System.out.println("Nhom co 1 thanh vien.");
+				break;
+			case 2:
+				System.out.println("Nhom co 2 thanh vien.");
+				break;
+			case 3:
+				System.out.println("Nhom co 3 thanh vien.");
+				break;
+			default:
+				System.out.println("Nhom co nhieu thanh vien.");
+				break;
+			}
 
 //		Question 6:
 //		Sử dụng switch case để làm lại Question 2

@@ -7,7 +7,8 @@ import java.util.Scanner;
 
 public class Ex5_InputFromConsole {
 	public static void main(String[] args) {
-
+//		Scanner scanner = new Scanner(System.in);
+		chonChucNang();
 	}
 
 //			Question 1:
@@ -163,7 +164,7 @@ public class Ex5_InputFromConsole {
 //				Bước 1: Chương trình in ra text "mời bạn nhập vào chức năng muốn sử dụng"
 //				Bước 2: Nếu người dùng nhập vào 1 thì sẽ thực hiện tạo account Nếu người dùng nhập vào 2 thì sẽ thực hiện chức năng tạo department Nếu người dùng nhập vào số khác thì in ra text "Mời bạn nhập lại" và quay trở lại bước 1
 
-	public static void chonChucNang(int a) {
+	public static void chonChucNang() {
 		System.out.println("________________________Question 8________________________");
 		Scanner scanner = new Scanner(System.in);
 		int i;

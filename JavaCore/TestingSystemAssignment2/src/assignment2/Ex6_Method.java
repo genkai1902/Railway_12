@@ -62,4 +62,8 @@ public class Ex6_Method {
 		}
 	}
 
+//		Question 4:
+//			Nhap so bat ki tu 1 - 10, in ra
+	
+	
 }
