@@ -8,7 +8,96 @@ import java.util.Scanner;
 public class Ex5_InputFromConsole {
 	public static void main(String[] args) {
 //		Scanner scanner = new Scanner(System.in);
-		chonChucNang();
+		// Create group
+				Group group1 = new Group();
+				group1.id = 1;
+				group1.name = "Java Fresher";
+
+				Group group2 = new Group();
+				group2.id = 2;
+				group2.name = "DB Fresher";
+
+				Group group3 = new Group();
+				group3.id = 3;
+				group3.name = "C++ Fresher";
+				
+
+		// Create Deparment
+				Department department1 = new Department();
+				department1.id = 1;
+				department1.name = "Sale";
+
+				Department department2 = new Department();
+				department2.id = 2;
+				department2.name = "Marketting";
+
+				Department department3 = new Department();
+				department3.id = 3;
+				department3.name = "HR";
+				
+
+		// Create Position
+				Position position1 = new Position();
+				position1.id = 1;
+				position1.name = "Dev";
+
+				Position position2 = new Position();
+				position2.id = 2;
+				position2.name = "Test";
+
+				Position position3 = new Position();
+				position3.id = 3;
+				position3.name = "Scrum Master";
+
+				Position position4 = new Position();
+				position4.id = 4;
+				position4.name = "PM";
+
+		// Create account
+				Account account1 = new Account();
+				account1.id = 1;
+				account1.department = department1;
+				account1.email = "An@gmail.com";
+				account1.fullname = "Nguyen Van An";
+				account1.position = position1;
+				account1.username = "an.nguyenvan";
+
+				Account account2 = new Account();
+				account2.id = 2;
+				account2.department = department1;
+				account2.email = "Linh@gmail.com";
+				account2.fullname = "Nguyen Hoai Linh";
+				account2.position = position3;
+				account2.username = "Linh.nguyenhoai";
+
+				Account account3 = new Account();
+				account3.id = 3;
+				account3.department = department2;
+				account3.email = "ha@gmail.com";
+				account3.fullname = "Pham Hai Ha";
+				account3.position = position1;
+				account3.username = "Ha.phamhai";
+
+		// add group to account
+				Group[] groupOfAccount1 = { group1 };
+				account1.groups = groupOfAccount1;
+
+				Group[] groupOfAccount2 = { group3 };
+				account2.groups = groupOfAccount2;
+
+				Group[] groupOfAccount3 = { group1 };
+				account3.groups = groupOfAccount3;
+
+		// add account to group
+				Account[] accountOfGroups1 = { account1, account2, account3 };
+				group1.accounts = accountOfGroups1;
+				
+				Account[] accountOfGroups2 = {  };
+				group2.accounts = accountOfGroups2;
+				
+				Account[] accountOfGroups3 = {  };
+				group3.accounts = accountOfGroups3;
+				
 	}
 
 //			Question 1:
@@ -27,6 +116,7 @@ public class Ex5_InputFromConsole {
 			System.out.println(soNguyen[i]);
 		}
 		;
+		scanner.close();
 	}
 
 //			Question 2:
@@ -45,6 +135,7 @@ public class Ex5_InputFromConsole {
 			System.out.println(soThuc[i]);
 		}
 		;
+		scanner.close();
 	}
 
 //			Question 3:
@@ -60,6 +151,7 @@ public class Ex5_InputFromConsole {
 		hoVaTen[1] = scanner.next();
 		System.out.println("Ho cua ban la: " + hoVaTen[0]);
 		System.out.println("Ten cua ban la: " + hoVaTen[1]);
+		scanner.close();
 	}
 
 //			Question 4:
@@ -72,6 +164,7 @@ public class Ex5_InputFromConsole {
 		String doB = scanner.nextLine();
 		Date q4 = new SimpleDateFormat("dd-MM-yyyy").parse(doB);
 		System.out.println(q4);
+		scanner.close();
 	}
 
 //			Question 5:
@@ -120,6 +213,7 @@ public class Ex5_InputFromConsole {
 			System.out.println("Position ID khong hop le.");
 			break;
 		}
+		scanner.close();
 	}
 
 //			Question 6:
@@ -133,6 +227,7 @@ public class Ex5_InputFromConsole {
 		newDep.id = scanner.nextInt();
 		System.out.print("Moi ban nhap ten cho department: ");
 		newDep.name = scanner.nextLine();
+		scanner.close();
 
 		System.out.println("Department vua tao co thong tin nhu sau:");
 		System.out.println("ID: " + newDep.id);
@@ -157,6 +252,7 @@ public class Ex5_InputFromConsole {
 				break;
 			}
 		}
+		scanner.close();
 	}
 
 //			Question 8:
@@ -185,7 +281,7 @@ public class Ex5_InputFromConsole {
 				break;
 			}
 		} while (i != 1 || i != 2);
-
+		scanner.close();
 	}
 
 //			Question 9:
@@ -199,6 +295,7 @@ public class Ex5_InputFromConsole {
 	public static void themGroup() {
 		System.out.println("________________________Question 9________________________");
 		Scanner scanner = new Scanner(System.in);
+		scanner.close();
 	}
 
 //			Question 10: Tiếp tục Question 8 và Question 9 
@@ -210,6 +307,7 @@ public class Ex5_InputFromConsole {
 	public static void q10() {
 		System.out.println("________________________Question 10________________________");
 		Scanner scanner = new Scanner(System.in);
+		scanner.close();
 	}
 
 //				Question 11: Tiếp tục Question 10 
@@ -223,6 +321,7 @@ public class Ex5_InputFromConsole {
 	public static void q11() {
 		System.out.println("________________________Question 11________________________");
 		Scanner scanner = new Scanner(System.in);
+		scanner.close();
 	}
 
 }

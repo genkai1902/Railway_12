@@ -17,4 +17,5 @@
     <fullyQualifiedTypeName name="java.time.LocalDate"/>
     <fullyQualifiedTypeName name="assignment2.Department"/>
     <fullyQualifiedTypeName name="assignment2.Ex2_SystemOutPrintf"/>
+    <fullyQualifiedTypeName name="java.lang.Math"/>
 </qualifiedTypeNameHistroy>
