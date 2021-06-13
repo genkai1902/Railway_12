@@ -1,4 +1,4 @@
-package assignment3;
+                                  package assignment3;
 
 import java.util.Scanner;
 
@@ -98,12 +98,12 @@ public class Ex4_String {
 		}
 	}
 	
-	public static void standardize(String name) {
-		char[] chars = name.toCharArray();
-		if (chars[i] == ' ' && chars[i+1] == ' ') {
-			chars[i] = '';
-		} else {
-
-		}
+//	public static void standardize(String name) {
+//		char[] chars = name.toCharArray();
+//		if (chars[i] == ' ' && chars[i+1] == ' ') {
+//			chars[i] = '';
+//		} else {
+//
+//		}
 	
 }
