@@ -23,4 +23,7 @@
     <fullyQualifiedTypeName name="com.vti.entity.CategoryQuestion"/>
     <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
     <fullyQualifiedTypeName name="com.vti.entity.Question"/>
+    <fullyQualifiedTypeName name="assignment4.ex5.entity.CanBo"/>
+    <fullyQualifiedTypeName name="assignment4.ex5.entity.KySu"/>
+    <fullyQualifiedTypeName name="assignment4.ex5.entity.NhanVien"/>
 </qualifiedTypeNameHistroy>

@@ -3,10 +3,10 @@ package assignment4.ex5.entity;
 public class CanBo {
 	String name;
 	int age;
-	Gender gender;
+	String gender;
 	String address;
 
-	public CanBo(String name, int age, Gender gender, String address) {
+	public CanBo(String name, int age, String gender, String address) {
 		this.name = name;
 		this.age = age;
 		this.gender = gender;
@@ -21,7 +21,7 @@ public class CanBo {
 		return this.age;
 	}
 
-	public Gender getGender() {
+	public String getGender() {
 		return this.gender;
 	}
 
@@ -37,18 +37,16 @@ public class CanBo {
 		this.age = age;
 	}
 
-	public void setGender(Gender gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
 	public void setAddress(String address) {
 		this.address = address;
 	}
-
-	public void hienThiThongTin() {
-		System.out.println("Ten: " + name);
-		System.out.println("Tuoi: " + age);
-		System.out.println("Gioi tinh: " + gender);
-		System.out.println("Dia chi: " + address);
+	
+	@Override
+	public String toString() {
+		return "Ten: " + name + ", Tuoi: " + age + ", Dia chi: " + address + ", gioiTinh: " + gender;
 	}
 }

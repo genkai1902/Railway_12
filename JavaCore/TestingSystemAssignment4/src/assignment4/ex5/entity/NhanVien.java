@@ -4,7 +4,7 @@ public class NhanVien extends CanBo{
 	
 	private String congViec;
 	
-	public NhanVien(String name, int age, Gender gender, String address, String congViec) {
+	public NhanVien(String name, int age, String gender, String address, String congViec) {
 		super(name, age, gender, address);
 		// TODO Auto-generated constructor stub
 		this.congViec = congViec;
@@ -18,4 +18,8 @@ public class NhanVien extends CanBo{
 		this.congViec = congViec;
 	}
 	
+	@Override
+	public String toString() {
+		return super.toString() + ", Cong viec: " + congViec;
+	}
 }
