@@ -1,6 +1,6 @@
-package com.vti.entity;
+package com.vti.Ex1Ex2;
 
-public class Position {
+public class CategoryQuestion {
 	private int id;
 	private String name;
 

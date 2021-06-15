@@ -1,4 +1,4 @@
-package com.vti.entity;
+package com.vti.Ex1Ex2;
 
 public class Student {
 	private int id;

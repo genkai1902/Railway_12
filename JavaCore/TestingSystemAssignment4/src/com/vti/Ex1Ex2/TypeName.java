@@ -1,4 +1,4 @@
-package com.vti.entity;
+package com.vti.Ex1Ex2;
 
 public enum TypeName {
 	ESSAY, MULTIPLECHOICE

@@ -1,24 +1,44 @@
 package railway12;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 
 public class Program {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		Phone phone1 = new Phone(1, "Note 10", "Android", 10000000d);
-//		phone1.id = 1;
-//		phone1.tenDT = "Note 10";
-//		phone1.hDH = "Android";
-//		phone1.giaTien = 10000000d;
+//		Object conCa = new ConCa();
+//		DongVat conCa = new ConCa();
+//		ConCa conCa = new ConCa();
+//		
+//		conCa.conCaKeu("ca day");
+//		conCa.conCaKeu("ca tram", "ca com tuoi");
+//		conCa.conCaKeu("ca tra", "ca basa", "ca ngu dai duong");
 		
-		System.out.println(phone1.getTen());
+		PhoneData phone1 = new VietnamesePhone();
+		phone1.insertContact("nam", "097...");
+		phone1.insertContact("phuong", "097...");
+		phone1.insertContact("giang", "098...");
 		
-		phone1.setTen("Iphone 12 Pro Max");
-		phone1.setHDH("iOS");
-		phone1.setGia(20000000d);
 		
-		System.out.println(phone1.getTen());
+		
+		
+		
+		
+		
+		
+		
+//		Phone phone1 = new Phone(1, "Note 10", "Android", 10000000d);
+////		phone1.id = 1;
+////		phone1.tenDT = "Note 10";
+////		phone1.hDH = "Android";
+////		phone1.giaTien = 10000000d;
+//		
+//		System.out.println(phone1.getTen());
+//		
+//		phone1.setTen("Iphone 12 Pro Max");
+//		phone1.setHDH("iOS");
+//		phone1.setGia(20000000d);
+//		
+//		System.out.println(phone1.getTen());
 		
 //		Department d1 = new Department();
 //		System.out.println(d1.id + "   " + d1.nameDepartment);

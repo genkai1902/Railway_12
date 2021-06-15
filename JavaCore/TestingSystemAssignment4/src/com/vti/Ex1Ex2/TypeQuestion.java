@@ -1,14 +1,14 @@
-package com.vti.entity;
+package com.vti.Ex1Ex2;
 
-public class Department {
+public class TypeQuestion {
 	private int id;
-	private String name;
+	private TypeName name;
 
 	public int getId() {
 		return this.id;
 	}
 
-	public String getName() {
+	public TypeName getName() {
 		return this.name;
 	}
 
@@ -16,7 +16,7 @@ public class Department {
 		this.id = id;
 	}
 
-	public void setName(String name) {
+	public void setName(TypeName name) {
 		this.name = name;
 	}
 }
