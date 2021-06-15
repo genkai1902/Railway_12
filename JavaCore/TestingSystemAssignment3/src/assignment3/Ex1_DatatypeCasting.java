@@ -24,16 +24,16 @@ public class Ex1_DatatypeCasting {
 //		Lấy ngẫu nhiên 1 số có 5 chữ số (những số dưới 5 chữ số thì sẽ thêm có số 0 ở đầu cho đủ 5 chữ số)
 
 		Random random = new Random();
-		int rNum = random.nextInt(99999);
+		int rNum = random.nextInt(999);
 //			C1
-		while (rNum <= 10000) {
-			rNum *= 10;
-		}
-		System.out.println("So random la: " + rNum);
+//		while (rNum <= 10000) {
+//			rNum *= 10;
+//		}
+//		System.out.println("So random la: " + rNum);
 
 //			C2
-//		String str = String.format("%05d", rNum);
-//		System.out.printf("%s",str);
+//		String str = String.format("%d", rNum);
+		System.out.printf("%05d\n",rNum);
 
 //			Question 3:
 //		Lấy 2 số cuối của số ở Question 2 và in ra.
