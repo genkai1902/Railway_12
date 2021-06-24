@@ -75,10 +75,11 @@ public class AddNewStudent {
 					email = sc03.nextLine();
 					System.out.println("Moi ban nhap so dien thoai cua hoc sinh: ");
 					phoneNum = sc03.nextLine();
+					System.out.println("Moi ban nhap ngay hop PH (theo dinh dang: yyyy-MM-dd): ");
+					String date = sc03.nextLine();
 					System.out.println("Moi ban nhap diem thap nhat cua hoc sinh: ");
 					float minMark = sc03.nextFloat();
-					System.out.println("Moi ban nhap ngay hop PH (theo dinh dang: dd-MM-yyyy): ");
-					String date = sc03.nextLine();
+					
 					HocSinh hsy = new HocSinhYeu(name, age, email, phoneNum, minMark, date);
 					DanhSachHS.addStudent(hsy);
 					addStudent();
