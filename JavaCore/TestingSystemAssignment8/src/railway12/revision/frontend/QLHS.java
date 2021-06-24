@@ -6,6 +6,12 @@ import railway12.revision.backend.AddNewStudent;
 import railway12.revision.backend.HomeWindow;
 import railway12.revision.backend.SearchByName;
 import railway12.revision.backend.ShowAllStudent;
+import railway12.revision.entity.DanhSachHS;
+import railway12.revision.entity.EDoiTuyen;
+import railway12.revision.entity.HocSinh;
+import railway12.revision.entity.HocSinhGioi;
+import railway12.revision.entity.HocSinhKha;
+import railway12.revision.entity.HocSinhYeu;
 
 public class QLHS {
 
@@ -32,9 +38,9 @@ public class QLHS {
 				switch (homeChoice) {
 				case 1:
 					AddNewStudent.addStudent();
-					break;
 				case 2:
-					ShowAllStudent.listStudent();;
+//					DanhSachHS.showAllStudent();
+					ShowAllStudent.listStudent();
 					break;
 				case 3:
 					SearchByName.searchStudent();;

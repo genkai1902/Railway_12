@@ -25,11 +25,14 @@
     <fullyQualifiedTypeName name="assignment4.ex5.entity.CanBo"/>
     <fullyQualifiedTypeName name="assignment4.ex5.entity.KySu"/>
     <fullyQualifiedTypeName name="assignment4.ex5.entity.NhanVien"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="assignment6.exception.Department"/>
     <fullyQualifiedTypeName name="assignment6.exception.Question7_ScannerUtils"/>
     <fullyQualifiedTypeName name="assignment6.exception.ScannerUtils"/>
     <fullyQualifiedTypeName name="assignment6.exception.PositionName"/>
     <fullyQualifiedTypeName name="assignment6.exception.Position"/>
+    <fullyQualifiedTypeName name="railway12.revision.backend.AddNewStudent"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="railway12.revision.frontend.QLHS"/>
+    <fullyQualifiedTypeName name="railway12.revision.entity.DanhSachHS"/>
 </qualifiedTypeNameHistroy>

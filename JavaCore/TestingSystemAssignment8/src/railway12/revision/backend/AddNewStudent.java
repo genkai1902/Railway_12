@@ -8,6 +8,7 @@ import railway12.revision.entity.HocSinh;
 import railway12.revision.entity.HocSinhGioi;
 import railway12.revision.entity.HocSinhKha;
 import railway12.revision.entity.HocSinhYeu;
+import railway12.revision.frontend.QLHS;
 
 public class AddNewStudent {
 	public static void addStudent() {
@@ -23,7 +24,7 @@ public class AddNewStudent {
 				choice = scadd.nextInt();
 				switch (choice) {
 				case 0:
-					HomeWindow.Home();
+					QLHS.main(null);
 					break;
 				case 1:
 					Scanner sc01 = new Scanner(System.in);
@@ -32,7 +33,7 @@ public class AddNewStudent {
 					System.out.println("Moi ban nhap ten hoc sinh: ");
 					String name = sc01.nextLine();
 					System.out.println("Moi ban nhap tuoi hoc sinh: ");
-					int age = sc01.nextInt();
+					int age = Integer.parseInt(sc01.nextLine());
 					System.out.println("Moi ban nhap email cua hoc sinh: ");
 					String email = sc01.nextLine();
 					System.out.println("Moi ban nhap so dien thoai cua hoc sinh: ");
@@ -42,6 +43,7 @@ public class AddNewStudent {
 					EDoiTuyen dT = EDoiTuyen.fromValue(doiTuyen);
 					HocSinh hsg = new HocSinhGioi(name, age, email, phoneNum, dT);
 					DanhSachHS.addStudent(hsg);
+					addStudent();
 					break;
 				case 2:
 					Scanner sc02 = new Scanner(System.in);
@@ -50,7 +52,7 @@ public class AddNewStudent {
 					System.out.println("Moi ban nhap ten hoc sinh: ");
 					name = sc02.nextLine();
 					System.out.println("Moi ban nhap tuoi hoc sinh: ");
-					age = sc02.nextInt();
+					age = Integer.parseInt(sc02.nextLine());
 					System.out.println("Moi ban nhap email cua hoc sinh: ");
 					email = sc02.nextLine();
 					System.out.println("Moi ban nhap so dien thoai cua hoc sinh: ");
@@ -59,6 +61,7 @@ public class AddNewStudent {
 					float diemTrungBinh = sc02.nextFloat();
 					HocSinh hsk = new HocSinhKha(name, age, email, phoneNum, diemTrungBinh);
 					DanhSachHS.addStudent(hsk);
+					addStudent();
 					break;
 				case 3:
 					Scanner sc03 = new Scanner(System.in);
@@ -67,7 +70,7 @@ public class AddNewStudent {
 					System.out.println("Moi ban nhap ten hoc sinh: ");
 					name = sc03.nextLine();
 					System.out.println("Moi ban nhap tuoi hoc sinh: ");
-					age = sc03.nextInt();
+					age = Integer.parseInt(sc03.nextLine());
 					System.out.println("Moi ban nhap email cua hoc sinh: ");
 					email = sc03.nextLine();
 					System.out.println("Moi ban nhap so dien thoai cua hoc sinh: ");
@@ -78,6 +81,7 @@ public class AddNewStudent {
 					String date = sc03.nextLine();
 					HocSinh hsy = new HocSinhYeu(name, age, email, phoneNum, minMark, date);
 					DanhSachHS.addStudent(hsy);
+					addStudent();
 					break;
 				default:
 					System.out.println("Chuc nang ban chon chua chinh xac, moi thu lai!");
