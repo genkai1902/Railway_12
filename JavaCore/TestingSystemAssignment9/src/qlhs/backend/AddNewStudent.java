@@ -1,14 +1,14 @@
-package railway12.revision.backend;
+package qlhs.backend;
 
 import java.util.Scanner;
 
-import railway12.revision.entity.DanhSachHS;
-import railway12.revision.entity.EDoiTuyen;
-import railway12.revision.entity.HocSinh;
-import railway12.revision.entity.HocSinhGioi;
-import railway12.revision.entity.HocSinhKha;
-import railway12.revision.entity.HocSinhYeu;
-import railway12.revision.frontend.QLHS;
+import qlhs.entity.DanhSachHS;
+import qlhs.entity.EDoiTuyen;
+import qlhs.entity.HocSinh;
+import qlhs.entity.HocSinhGioi;
+import qlhs.entity.HocSinhKha;
+import qlhs.entity.HocSinhYeu;
+import qlhs.frontend.QLHS;
 
 public class AddNewStudent{
 	public static void addStudent() throws Exception{

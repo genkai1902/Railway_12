@@ -1,12 +1,12 @@
-package railway12.revision.frontend;
+package qlhs.frontend;
 
 import java.util.Scanner;
 
-import railway12.revision.backend.AddNewStudent;
-import railway12.revision.backend.HomeWindow;
-import railway12.revision.backend.SearchByName;
-import railway12.revision.backend.ShowAllStudent;
-import railway12.revision.entity.EDoiTuyen;
+import qlhs.backend.AddNewStudent;
+import qlhs.backend.HomeWindow;
+import qlhs.backend.SearchByName;
+import qlhs.backend.ShowAllStudent;
+import qlhs.entity.EDoiTuyen;
 
 public class QLHS {
 

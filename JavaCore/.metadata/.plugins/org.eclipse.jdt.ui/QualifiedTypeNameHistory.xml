@@ -35,4 +35,9 @@
     <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="railway12.revision.frontend.QLHS"/>
     <fullyQualifiedTypeName name="railway12.revision.entity.DanhSachHS"/>
+    <fullyQualifiedTypeName name="railway12.revision.entity.EDoiTuyen"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.sql.DriverManager"/>
+    <fullyQualifiedTypeName name="java.lang.ClassNotFoundException"/>
 </qualifiedTypeNameHistroy>
