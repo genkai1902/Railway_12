@@ -1,4 +1,4 @@
-package jdbc.connection;
+package com.vti.entity;
 
 public enum EDoiTuyen {
 	TOAN("toan"), LY ("ly"), HOA("hoa");

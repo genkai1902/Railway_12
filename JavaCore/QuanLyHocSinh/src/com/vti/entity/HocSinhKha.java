@@ -1,4 +1,4 @@
-package jdbc.connection;
+package com.vti.entity;
 
 public class HocSinhKha extends HocSinh {
 	private float avg;

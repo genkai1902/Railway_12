@@ -1,13 +1,14 @@
-package jdbc.connection;
+package com.vti.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MySQLConnectionUtils {
+	
 	public static Connection getMySQLConnection() throws ClassNotFoundException, SQLException {
 		String hostName = "localhost";
-		String dbName = "TTHS";
+		String dbName = "CANDIDATE";
 		String username = "root";
 		String password = "root";
 		return getMySQLConnection(hostName, dbName, username, password);

@@ -1,4 +1,4 @@
-package jdbc.connection;
+package com.vti.entity;
 
 public class HocSinh {
 	private int id;

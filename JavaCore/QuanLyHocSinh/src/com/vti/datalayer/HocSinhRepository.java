@@ -1,69 +1,32 @@
-package jdbc.connection;
+package com.vti.datalayer;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
-public class Program {
+import com.vti.entity.EDoiTuyen;
+import com.vti.entity.HocSinh;
+import com.vti.entity.HocSinhGioi;
+import com.vti.entity.HocSinhKha;
+import com.vti.entity.HocSinhYeu;
+import com.vti.utils.MySQLConnectionUtils;
 
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		Connection conn = getMyConnection();
-		int choice = 0;
-		while (choice != 4) {
-			System.out.println("Chào mừng bạn đến với chương trình Quản Lý Học Sinh");
-			System.out.println("------------------ * * * ------------------");
-			System.out.println("1. Thêm mới học sinh");
-			System.out.println("2. Danh sách học sinh");
-			System.out.println("3. Tìm kiếm theo ID");
-			System.out.println("4. Thoát");
-			System.out.println("Mời bạn chọn chức năng: ");
-			Scanner sc = new Scanner(System.in);
-			try {
-				choice = sc.nextInt();
-				switch (choice) {
-				case 1:
-					System.out.println("Thêm mới học sinh");
-					createNewStudent(conn);
-					System.out.println("------------------------");
-					break;
-				case 2:
-					System.out.println("Danh sách học sinh");
-					displayList(conn);
-					System.out.println("------------------------");
-					break;
-				case 3:
-					System.out.println("Tìm kiếm học sinh theo ID");
-					searchByID(conn);
-					System.out.println("------------------------");
-					break;
-				case 4:
-					System.out.println("Cảm ơn bạn đã sử dụng chương trình.");
-					System.out.println("Vui lòng đánh giá chúng tôi 5* nhé!");
-					break;
-				default:
-					System.err.println("Không có chức năng tương ứng, mời bạn chọn lại!");
-					break;
-				}
-			} catch (Exception e) {
-				System.err.println("Mời bạn nhập chính xác các chức năng được hiển thị!");
-			}
-		}
+public class HocSinhRepository implements IHocSinhRepository{
+	private MySQLConnectionUtils jdbcUtils;
+	public HocSinhRepository() {
+		jdbcUtils = new MySQLConnectionUtils();
 	}
-	
-	public static Connection getMyConnection() throws ClassNotFoundException, SQLException {
-		Connection connection = MySQLConnectionUtils.getMySQLConnection();
-		return connection;
-	}
-	
-	public static List<HocSinh> getAll(Connection connection) throws SQLException, ParseException {
+
+	public List<HocSinh> getAll() throws ClassNotFoundException, SQLException, ParseException {
 		String sql = "SELECT * FROM HocSinh;";
+		Connection connection = jdbcUtils.getMySQLConnection();
 		PreparedStatement ps = connection.prepareStatement(sql);
 		ResultSet rs = ps.executeQuery();
 		List<HocSinh> listStudent = new ArrayList<HocSinh>();
@@ -116,50 +79,11 @@ public class Program {
 		}
 		return listStudent;
 	}
-	
-	public static void displayList(Connection connection) throws SQLException, ParseException {
-		List<HocSinh> listStudent = getAll(connection);
-		for (HocSinh hocSinh : listStudent) {
-			System.out.println(hocSinh);
-		}
-	}
-	
-	public static void createNewStudent(Connection connection) {
-		while (true) {
-			try {
-				Scanner sc = new Scanner(System.in);
-				System.out.println("------------------------");
-				System.out.println("1. Them moi hoc sinh gioi");
-				System.out.println("2. Them moi hoc sinh kha");
-				System.out.println("3. Them moi hoc sinh yeu");
-				System.out.println("Moi ban chon chuc nang: ");
-				int choice = sc.nextInt();
-				switch (choice) {
-				case 1:
-					System.out.println("HSG");
-					createHSG(connection);
-					break;
-				case 2:
-					System.out.println("HSK");
-					createHSK(connection);
-					break;
-				case 3:
-					System.out.println("HSY");
-					createHSY(connection);
-					break;
-				default:
-					System.err.println("Chuc nang khong chinh xac, moi ban nhap lai!");
-					break;
-				}
-			} catch (Exception e) {
-				System.err.println("Moi ban nhap chinh xac chuc nang!");
-			}
-		}
-	}
-	
-	public static void createHSG(Connection connection) throws SQLException {
+
+	public void createHSG() throws ClassNotFoundException, SQLException {
 		String sql = "INSERT INTO `HocSinh` (`name`, email, age, phoneNumber, teamHSG, `rank`)  "
-								+ "VALUES 	(?,		 ?,		?,	 ?,			  ?,		\"GIOI\")";
+				+ "VALUES 	(?,		 ?,		?,	 ?,			  ?,		\"GIOI\")";
+		Connection connection = jdbcUtils.getMySQLConnection();
 		PreparedStatement ps = connection.prepareStatement(sql);
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Moi ban nhap ten hoc sinh: ");
@@ -180,10 +104,11 @@ public class Program {
 		int effectedRecordAmount = ps.executeUpdate();
 		System.out.println("So luong ban ghi thay doi (Tao moi hoc sinh): " + effectedRecordAmount);
 	}
-	
-	public static void createHSK(Connection connection) throws SQLException {
+
+	public void createHSK() throws ClassNotFoundException, SQLException {
 		String sql = "INSERT INTO `HocSinh` (`name`, email, age, phoneNumber, avgMark, `rank`)  "
-								+ "VALUES 	(?,		 ?,		?,	 ?,			  ?,		\"KHA\")";
+				+ "VALUES 	(?,		 ?,		?,	 ?,			  ?,		\"KHA\")";
+		Connection connection = jdbcUtils.getMySQLConnection();
 		PreparedStatement ps = connection.prepareStatement(sql);
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Moi ban nhap ten hoc sinh: ");
@@ -204,10 +129,11 @@ public class Program {
 		int effectedRecordAmount = ps.executeUpdate();
 		System.out.println("So luong ban ghi thay doi (Tao moi hoc sinh): " + effectedRecordAmount);
 	}
-	
-	public static void createHSY(Connection connection) throws SQLException, ParseException {
+
+	public void createHSY() throws ClassNotFoundException, SQLException, ParseException {
 		String sql = "INSERT INTO `HocSinh` (`name`, email, age, phoneNumber, worstMark, meetingDate, `rank`)  "
-								+ "VALUES 	(?,		 ?,		?,	 ?,			  ?,	  	? 			,\"KHA\")";
+				+ "VALUES 	(?,		 ?,		?,	 ?,			  ?,	  	? 			,\"KHA\")";
+		Connection connection = jdbcUtils.getMySQLConnection();
 		PreparedStatement ps = connection.prepareStatement(sql);
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Moi ban nhap ten hoc sinh: ");
@@ -231,21 +157,5 @@ public class Program {
 		int effectedRecordAmount = ps.executeUpdate();
 		System.out.println("So luong ban ghi thay doi (Tao moi hoc sinh): " + effectedRecordAmount);
 	}
-	
-	public static void searchByID(Connection connection) throws SQLException, ParseException{
-		Scanner sc = new Scanner(System.in);
-		System.out.println("Moi ban nhap vao ID hoc sinh can tim kiem: ");
-		int searchID = sc.nextInt();
-		boolean isFound = false;
-		List<HocSinh> listStudent = getAll(connection);
-		for (HocSinh hocSinh : listStudent) {
-			if (searchID == hocSinh.getId()) {
-				System.out.println(hocSinh);
-				isFound = true;
-			}
-		}
-		if (!isFound) {
-			System.out.println("Khong tim thay thong tin hoc sinh co ID: " + searchID);
-		}
-	}
+
 }
