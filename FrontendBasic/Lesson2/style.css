@@ -1,0 +1,22 @@
+img {
+    width: 240px;
+    height: 150px;
+}
+
+.demo-lesson-2 {
+    height: 100px;
+    width: 20%;
+    background-color: aqua;
+    border-style: double;
+    /* padding-left: 100px;
+    margin-left: 15%;
+    margin-top: 100px; */
+    position: relative;
+}
+
+.demo-pos {
+    margin-top: 20px;
+    position: absolute;
+    display: inline;
+}
+ 

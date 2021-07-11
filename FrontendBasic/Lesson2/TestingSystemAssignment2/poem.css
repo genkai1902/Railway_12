@@ -1,0 +1,42 @@
+.title {
+    /* padding: 5px; */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: pink;
+    color: palevioletred;
+    text-align: center;
+}
+
+.body-style {
+    /* padding: 5px; */
+    margin-left: 15%;
+    margin-right: 15%;
+    height: auto;
+    background-color: yellow;
+}
+
+#p1 {
+    margin: auto;
+    width: 300px;
+    color: blue;
+}
+
+#p2 {
+    margin: auto;
+    width: 300px;
+    color: red;
+}
+
+#p3 {
+    margin: auto;
+    width: 300px;
+    color: green;
+}
+
+
+
+p {
+    text-align: center;
+}

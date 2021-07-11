@@ -1,0 +1,13 @@
+.grid-container {
+    display: grid;
+    grid-template-areas: 
+    'header header header header header header'
+    'menu main main main main main';
+    grid-gap: 10px;
+    background-color: #2196F3;
+    padding: 10px;
+}
+
+.item1 { grid-area: header; }
+.item2 { grid-area: menu; }
+.item3 { grid-area: main; }
